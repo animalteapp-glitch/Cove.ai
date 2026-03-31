@@ -4,8 +4,13 @@ import MessageBubble from './MessageBubble';
 import PromptInput from './PromptInput';
 import { motion } from 'framer-motion';
 
+type Message = {
+  role: 'user' | 'assistant';
+  content: string;
+};
+
 export default function ChatBox() {
-  const [messages, setMessages] = useState<{ role: 'user' | 'assistant'; content: string }[]>([
+  const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: "Hello! I'm Cove, your AI assistant. How can I help?" }
   ]);
   const [isTyping, setIsTyping] = useState(false);
@@ -21,12 +26,12 @@ export default function ChatBox() {
 
   const sendMessage = async (text: string) => {
     if (!text.trim()) return;
-    const userMsg = { role: 'user', content: text };
+    const userMsg: Message = { role: 'user', content: text };
     setMessages(prev => [...prev, userMsg]);
     setIsTyping(true);
     // Mock AI response
     setTimeout(() => {
-      const aiMsg = { role: 'assistant', content: `You said: ${text}. This is a demo response.` };
+      const aiMsg: Message = { role: 'assistant', content: `You said: ${text}. This is a demo response.` };
       setMessages(prev => [...prev, aiMsg]);
       setIsTyping(false);
     }, 1000);
