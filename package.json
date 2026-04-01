@@ -1,4 +1,13 @@
 {
+  "name": "cove-ai",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
     "framer-motion": "^10.16.5",
     "next": "14.2.35",
